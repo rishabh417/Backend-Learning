@@ -19,6 +19,3 @@
 
 - Used two approach to connect the database - 1. In Index File, 2. In Seprate DB file
 
-- Assignments - 
-    - console log `connectionInstance`
-    - Read more about process.exit code
