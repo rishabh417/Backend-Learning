@@ -5,7 +5,7 @@ import bcrypt from "bcrypt"
 const userSchema = new Schema({
     userName : {
         type: String,
-        require : true,
+        required : true,
         unique : true,
         lowercase : true,
         trim : true,
@@ -13,20 +13,20 @@ const userSchema = new Schema({
     },
     email : {
         type: String,
-        require : true,
+        required : true,
         unique : true,
         lowercase : true,
         trim : true,
     },
     fullName : {
         type: String,
-        require : true,        
+        required : true,        
         lowercase : true,
         trim : true,        
     },
     password : {
         type: String,
-        require : [true, "password is required"],
+        required : [true, "password is required"],
     },
     avatar : {
         type : String, // cloudinary url
@@ -57,7 +57,7 @@ userSchema.methods.isPasswordCorrect = async function(password){
 }
 
 userSchema.methods.generateAccessToken = function(){
-    jwt.sign({
+    return jwt.sign({
         _id:this._id,
         fullName : this.fullName,
         email : this.email,
@@ -69,7 +69,7 @@ userSchema.methods.generateAccessToken = function(){
 }
 
 userSchema.methods.generateRefreshToken = function(){
-    jwt.sign({
+    return jwt.sign({
         _id:this._id,       
     },
     process.env.REFRESH_TOKEN_SECRET,
